@@ -3,7 +3,7 @@
 #
 # Script (freqVectorsEdit.sh) to add 'FrequencyVectors' from a source plist to Mac-F60DEB81FF30ACF6.plist
 #
-# Version 3.2 - Copyright (c) 2013-2017 by Pike R. Alpha
+# Version 3.3 - Copyright (c) 2013-2017 by Pike R. Alpha and 2020 by Matis Schotte
 #
 # Updates:
 #			- v0.5	Show Mac model info (Pike R. Alpha, December 2013)
@@ -67,6 +67,7 @@
 #			-       Show matching board-id in bold.
 #			-       Show Frequencies and HWP setting.
 #			- v3.2  Renamed _listmatchingFiles to _selectSourceResourceFile()
+#           - v3.3  Disabled sudo requirement, patched file will always be created on ~/Desktop/freqVectors/
 #
 #
 # Known issues:
@@ -85,7 +86,7 @@
 #
 # Script version info.
 #
-gScriptVersion=3.2
+gScriptVersion=3.3
 
 #
 # Path and filename setup.
@@ -94,6 +95,7 @@ gHome=$(echo $HOME)
 gPath="${gHome}/Library/ssdtPRGen"
 gDataPath="${gPath}/Data"
 gPrefsPath="${gHome}/Library/Preferences"
+gResultFolder="${gHome}/Desktop/freqVectors"
 
 #
 # Possible editors.
@@ -1567,9 +1569,11 @@ function main()
 
   _selectSourceResourceFile
   #
-  # Update target plist
+  # Copy target plist to desktop and edit there
   #
   gTargetPlist="${gBoardID}.plist"
+  mkdir "${gResultFolder}"
+  cp -i "${gTargetPlist}" "${gResultFolder}/"
   #
   #
   #
@@ -1580,6 +1584,10 @@ function main()
       #
       /usr/libexec/PlistBuddy -c "Print IOPlatformPowerProfile:FrequencyVectors:0" "${gSourcePlist}" > /tmp/FrequencyVectors.bin
   fi
+  
+  # change working directory
+  cd "${gResultFolder}/"
+  
   #
   # Remove the trailing 0x0A byte (we don't want that).
   #
@@ -1634,8 +1642,8 @@ function main()
   #
   #
   echo ''
-  echo 'Triggering a kernelcache refresh ...'
-  touch "${gExtensionsDirectory}"
+  #echo 'Triggering a kernelcache refresh ...'
+  #touch "${gExtensionsDirectory}"
   #
   # Ask for confirmation before opening the plist?
   #
@@ -1703,11 +1711,11 @@ function main()
       fi
   fi
 
-  read -p "Do you want to reboot now? (y/n) " choice
-  case "$choice" in
-    y|Y) reboot now
-         ;;
-  esac
+  #read -p "Do you want to reboot now? (y/n) " choice
+  #case "$choice" in
+  #  y|Y) reboot now
+  #       ;;
+  #esac
 
   echo ''
 }
@@ -1718,20 +1726,20 @@ clear
 _showHeader
 _selectEditor
 
-if [[ $gID -ne 0 ]];
-  then
-    printf "This script ${STYLE_UNDERLINED}must${STYLE_RESET} be run as root!" 1>&2
-    echo ''
-    #
-    # Re-run script with arguments.
-    #
-    sudo "$0" "$@"
-  else
-    #
-    # We are root. Call main with arguments.
-    #
+#if [[ $gID -ne 0 ]];
+#  then
+#    printf "This script ${STYLE_UNDERLINED}must${STYLE_RESET} be run as root!" 1>&2
+#    echo ''
+#    #
+#    # Re-run script with arguments.
+#    #
+#    sudo "$0" "$@"
+#  else
+#    #
+#    # We are root. Call main with arguments.
+#    #
     main "$@"
-fi
+#fi
 
 exit 0
 
