@@ -8,16 +8,11 @@ The target plist (example: Mac-F60DEB81FF30ACF6.plist for the MacPro6,1) is sele
 
 1) Start script by entering:
 
-./freqVectorsEdit.sh
+./freqVectorsEdit.sh -d 1
 
-2) It will now ask you for the administrator (root) password:
+2) Now you see something like this:
 
-This script must be run as root!
-Password: <enter root password>
-
-3) Now you see something like this:
-
-freqVectorsEdit.sh v1.3 Copyright (c) 2013-2014 by Pike R. Alpha.
+freqVectorsEdit.sh v3.2 Copyright (c) 2013-2014 by Pike R. Alpha and 2020 by Matis Schotte.
 -----------------------------------------------------------------
 Bugs > https://github.com/Piker-Alpha/freqVectorsEdit.sh/issues <
 
@@ -39,16 +34,8 @@ Available resource files (plists) with FrequencyVectors:
 
 Please choose the desired plist for your hardware (Exit/1-13) ?
 
-4) Let's use '4' for this run and press enter. After this you see this: 
-
-Triggering a kernelcache refresh ...
+3) Let's use '4' for this run and press enter. After this you see this: 
 
 Do you want to open Mac-F60DEB81FF30ACF6.plist (y/n)? n
 
-5) Let's use 'n' for this run and press enter. Now it asks you if you want to reboot:
-
-Do you want to reboot now? (y/n) n
-
-6) Let's use 'n' for this run and press enter. You normally would select 'y'.
-
-
+4) Let's use 'n' for this run and press enter. Now it asks you if you want to reboot:
