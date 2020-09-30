@@ -38,4 +38,5 @@ Please choose the desired plist for your hardware (Exit/1-13) ?
 
 Do you want to open Mac-F60DEB81FF30ACF6.plist (y/n)? n
 
-4) Let's use 'n' for this run and press enter. Now it asks you if you want to reboot:
+4) Let's use 'n' for this run and press enter.
+Now the patched file can be found in ~/Desktop/freqVectors/
