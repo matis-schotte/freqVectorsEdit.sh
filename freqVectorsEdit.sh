@@ -316,7 +316,7 @@ function _toLowerCase()
 
 function _showHeader()
 {
-  printf "${STYLE_BOLD}freqVectorsEdit.sh${STYLE_RESET} v${gScriptVersion} Copyright (c) 2013-$(date "+%Y") by Pike R. Alpha.\n"
+  printf "${STYLE_BOLD}freqVectorsEdit.sh${STYLE_RESET} v${gScriptVersion} Copyright (c) 2013-2017 by Pike R. Alpha and 2020 by Matis Schotte.\n"
   echo '-----------------------------------------------------------------'
   printf "${STYLE_BOLD}Bugs${STYLE_RESET} > ${STYLE_BLUE_FG}https://github.com/Piker-Alpha/freqVectorsEdit.sh/issues${STYLE_RESET} <\n\n"
 }
